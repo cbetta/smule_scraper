@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    awesome_print (1.2.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -37,8 +38,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   capybara
   capybara-webkit
   dotenv
+  json
   shotgun
   sinatra

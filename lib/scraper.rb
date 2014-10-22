@@ -2,6 +2,7 @@ require 'capybara'
 require 'capybara/dsl'
 require 'capybara-webkit'
 require 'dotenv'
+require 'awesome_print'
 
 class Scraper
   include Capybara::DSL
@@ -13,6 +14,23 @@ class Scraper
     Capybara.app_host = 'http://www.smule.com/'
   end
 
+  def data
+    login
+    html = page.html.split("displayData").last
+    links = html.to_s.scan /"media_url":"(.*?)",/
+    titles = html.to_s.scan /"title":"(.*?)",/
+    keys = html.to_s.scan /"key":"(.*?)",/
+    collection = links.each.with_index.inject([]) do |list, (link, index)|
+      list << {
+        link: link[0],
+        title: titles[index][0],
+        key: keys[index][0]
+      }
+      list
+    end
+    collection
+  end
+
   def login
     visit('/')
     click_on('Log In')
@@ -21,6 +39,7 @@ class Scraper
     find(:css, '.snp-modal-form-password').set(ENV["PASSWORD"])
     click_on('Login')
     sleep(5)
-    page.html
+    find(:css, '.login-handle').click
+    click_on('Profile')
   end
 end

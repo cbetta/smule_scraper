@@ -5,5 +5,5 @@ task :default => [:scrape]
 
 desc "Run scraper"
 task :scrape do
-  puts Scraper.new.login
+  puts Scraper.new.links
 end

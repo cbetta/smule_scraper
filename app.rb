@@ -1,13 +1,13 @@
 require 'sinatra'
+require 'json'
 require "./lib/scraper"
 
 class Application < Sinatra::Base
   get '/' do
-    Scraper.new.login
-    # "Hello World"
   end
 
-  private
-
-
+  get "/list" do
+    content_type :json
+    Scraper.new.data.to_json
+  end
 end
