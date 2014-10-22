@@ -20,11 +20,14 @@ class Scraper
     links = html.to_s.scan /"media_url":"(.*?)",/
     titles = html.to_s.scan /"title":"(.*?)",/
     keys = html.to_s.scan /"key":"(.*?)",/
+    dates = html.to_s.scan /"created_at":"(.*?)",/
+
     collection = links.each.with_index.inject([]) do |list, (link, index)|
       list << {
         link: link[0],
         title: titles[index][0],
-        key: keys[index][0]
+        key: keys[index][0],
+        created_at: dates[index][0]
       }
       list
     end
