@@ -14,7 +14,8 @@ class Scraper
     Capybara.app_host = 'http://www.smule.com/'
   end
 
-  def data
+  def data cached=false
+    return saved_data if cached == "1" && cache_exists?
     login
     html = page.html.split("displayData").last
     links = html.to_s.scan /"media_url":"(.*?)",/
@@ -31,7 +32,12 @@ class Scraper
       }
       list
     end
+    redis.set("list", collection.to_json)
     collection
+  end
+
+  def saved_data
+    JSON.parse redis.get("list")
   end
 
   def login
@@ -44,5 +50,13 @@ class Scraper
     sleep(5)
     find(:css, '.login-handle').click
     click_on('Profile')
+  end
+
+  def cache_exists?
+    !redis.get("list").nil?
+  end
+
+  def redis
+    @redis ||= Redis.new
   end
 end

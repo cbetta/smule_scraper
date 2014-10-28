@@ -1,3 +1,81 @@
-.template {
+@font-face {
+  font-family: 'bt_mono';
+  src: url("/fonts/bt_mono_regular.eot");
+  src: url("/fonts/bt_mono_regular.eot?#iefix") format("embedded-opentype"), url("/fonts/bt_mono_regular.woff") format("woff"), url("/fonts/bt_mono_regular.ttf") format("truetype"), url("/fonts/bt_mono_regular.svg#7ab77d0710e7e840be6567e2c3f011a4") format("svg");
+  font-style: normal;
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'bt_mono_bold';
+  src: url("/fonts/bt_mono_bold.eot");
+  src: url("/fonts/bt_mono_bold.eot?#iefix") format("embedded-opentype"), url("/fonts/bt_mono_bold.woff") format("woff"), url("/fonts/bt_mono_bold.ttf") format("truetype"), url("/fonts/bt_mono_bold.svg#54e6d6596b0e9963775ade7540c652b6") format("svg");
+  font-weight: 700;
+  font-style: normal; }
+
+body {
+  margin: 0;
+  background-color: #333;
+  font: 16px/1.1 "bt_mono", "Source Code Pro", courier, monospace;
+}
+
+nav {
+  padding: 20px 40px;
+  background-color: white;
+}
+
+nav a {
+  float: right;
+}
+
+nav .loader {
+  margin-left: 20px;
+  font-size: 0.8em;
+  color: #AAA;
+  background-image: url('/ajax-loader.gif');
+  background-repeat: no-repeat;
+  padding-left: 20px;
+}
+
+form {
+  width: 200px;
+  margin: 100px auto;
+}
+
+form input {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+form input[type=submit] {
+  border-color: #A8CF4A;
+  background-color: #A8CF4A;
+  color: #333;
+}
+
+#items {
+  padding: 20px;
+}
+
+#items .item {
+  width: 350px;
+  background-color: white;
+  margin: 20px;
+  float: left;
+  padding: 20px;
+}
+
+#items .item.template {
   display: none;
+}
+
+#items .item .url {
+  float: right;
+}
+
+#items .item .title {
+  font: 16px/1.1 "bt_mono_bold", "Source Code Pro", courier, monospace;
+}
+#items .item .date {
+  font-size: 0.8em;
 }

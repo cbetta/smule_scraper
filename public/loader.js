@@ -1,7 +1,7 @@
 $(function(){
-  loadItems = function() {
+  loadItems = function(cached) {
     $(".loader").show();
-    $.get("/list", function(data){
+    $.get("/list?cached="+cached, function(data){
       $(".loader").hide();
       for (var i = data.length-1; i >= 0; i--) {
         entry = data[i];
@@ -24,5 +24,6 @@ $(function(){
   }
 
   setInterval(loadItems, 30000);
-  loadItems();
+  loadItems(1);
+  setTimeout(loadItems, 1000);
 });
